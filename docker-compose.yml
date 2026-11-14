@@ -1,0 +1,10 @@
+services:
+  ndnsim:
+    build: .
+    image: icn-ndnsim:local
+    working_dir: /opt/ndnSIM/ns-3
+    volumes:
+      # Edit scenarios on Windows. The container compiles whatever is here.
+      - ./scenarios:/opt/ndnSIM/ns-3/scratch
+      - ./results:/results
+    command: ["./waf", "--run", "wired-topology --results=/results"]
